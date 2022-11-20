@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable, of, tap } from 'rxjs';
 import { Contato } from 'src/app/models/contato';
-import { ContatoReducer } from 'src/app/store/ContatoReducer';
+import { MyEvents } from 'src/app/store/ContatoReducer';
+
 
 @Component({
   selector: 'app-home',
@@ -11,19 +12,23 @@ import { ContatoReducer } from 'src/app/store/ContatoReducer';
 })
 export class HomeComponent implements OnInit {
 
-  // contact$:Observable<Contato>;
-  dados:Contato=new Contato();
+  dados:any=[];
+  contact$:Observable<Contato>;
 
-  constructor(private store:Store<{contact:Contato}>) { 
+
+  constructor(private store: Store<{ contact: Contato }>) {
+    this.contact$ = store.select(contact => contact.contact)
   }
-  
   ngOnInit(): void {
-    this.store.select('contact')
-    .pipe(
-      map(x => x)
-    ).subscribe(v=>{
-      this.dados = v
-    })
+
+    this.getDados();
+
   }
- 
+
+  getDados(){
+     this.contact$.pipe(tap(x=>x))
+     .subscribe(x=>{
+        this.dados = x;
+     })
+  }
 }

@@ -14,7 +14,7 @@ export class ContatoComponent implements OnInit {
   contact$:Observable<Contato>;
 
   constructor(private store:Store<{contact:Contato}>) {
-       this.contact$ = this.store.select('contact');
+       this.contact$ = store.select('contact');
    }
 
   ngOnInit(): void {

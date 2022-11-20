@@ -10,6 +10,7 @@ import { ContatoComponent } from './pages/contato/contato.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StoreModule } from '@ngrx/store';
 import { ContatoReducer } from './store/ContatoReducer';
+import { TabelaComponent } from './pages/tabela/tabela.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ContatoReducer } from './store/ContatoReducer';
     FormComponent,
     HomeComponent,
     ContatoComponent,
-    NavbarComponent
+    NavbarComponent,
+    TabelaComponent
   ],
   imports: [
     BrowserModule,
